@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_gym"
+        android:enabled="true"
+        android:icon="@drawable/ic_fitness_center_black_24dp"
+        app:showAsAction="ifRoom"
+        android:title="Gym" />
+    <item
+        android:id="@+id/action_stadium"
+        android:enabled="true"
+        android:icon="@drawable/ic_directions_run_black_24dp"
+        app:showAsAction="ifRoom"
+        android:title="Stadium"
+         />
+
+</menu>
