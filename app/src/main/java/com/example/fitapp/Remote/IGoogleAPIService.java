@@ -1,5 +1,6 @@
 package com.example.fitapp.Remote;
 import com.example.fitapp.Model.MyPlaces;
+import com.example.fitapp.Model.PlaceDetail;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -10,5 +11,5 @@ public interface IGoogleAPIService {
     Call<MyPlaces> getNearbyPlaces(@Url String url);
 
     @GET
-    Call<MyPlaces> getDetailPlace(@Url String url);
+    Call<PlaceDetail> getDetailPlace(@Url String url);
 }

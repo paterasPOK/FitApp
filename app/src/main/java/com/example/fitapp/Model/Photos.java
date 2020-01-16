@@ -1,35 +1,57 @@
 package com.example.fitapp.Model;
 
-public class Photos {
-    private Viewport viewport;
+public class Photos{
+    private String photo_reference;
 
-    private Location location;
+    private String width;
 
-    public Viewport getViewport ()
+    private String[] html_attributions;
+
+    private String height;
+
+    public String getPhoto_reference ()
     {
-        return viewport;
+        return photo_reference;
     }
 
-    public void setViewport (Viewport viewport)
+    public void setPhoto_reference (String photo_reference)
     {
-        this.viewport = viewport;
+        this.photo_reference = photo_reference;
     }
 
-    public Location getLocation ()
+    public String getWidth ()
     {
-        return location;
+        return width;
     }
 
-    public void setLocation (Location location)
+    public void setWidth (String width)
     {
-        this.location = location;
+        this.width = width;
+    }
+
+    public String[] getHtml_attributions ()
+    {
+        return html_attributions;
+    }
+
+    public void setHtml_attributions (String[] html_attributions)
+    {
+        this.html_attributions = html_attributions;
+    }
+
+    public String getHeight ()
+    {
+        return height;
+    }
+
+    public void setHeight (String height)
+    {
+        this.height = height;
     }
 
     @Override
     public String toString()
     {
-        return "ClassPojo [viewport = "+viewport+", location = "+location+"]";
+        return "ClassPojo [photo_reference = "+photo_reference+", width = "+width+", html_attributions = "+html_attributions+", height = "+height+"]";
     }
 }
-
-

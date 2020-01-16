@@ -28,6 +28,8 @@ public class Results {private String[] types;
 
     private String place_id;
 
+
+
     public String[] getTypes ()
     {
         return types;

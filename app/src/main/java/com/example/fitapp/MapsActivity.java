@@ -36,6 +36,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -104,6 +105,8 @@ GoogleApiClient.OnConnectionFailedListener,
                 .enqueue(new Callback<MyPlaces>() {
                     @Override
                     public void onResponse(Call<MyPlaces> call, Response<MyPlaces> response) {
+
+                        currentPlace = response.body();
                         if(response.isSuccessful())
                         {
                             for(int i=0; i<response.body().getResults().length;i++)
@@ -118,9 +121,9 @@ GoogleApiClient.OnConnectionFailedListener,
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
                                 if(placeType.equals("gym"))
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_gym));
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                                 else if(placeType.equals("stadium"))
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_stadium));
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
                                 else
                                     markerOptions.icon(BitmapDescriptorFactory.fromResource((int) BitmapDescriptorFactory.HUE_RED));
 
@@ -190,20 +193,19 @@ GoogleApiClient.OnConnectionFailedListener,
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-            {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 buildGoogleApiClien();
                 mMap.setMyLocationEnabled(true);
             }
-            else
+        }
+                else
                 {
                     buildGoogleApiClien();
                     mMap.setMyLocationEnabled(true);
                 }
 
-        }
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -228,7 +230,7 @@ GoogleApiClient.OnConnectionFailedListener,
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        mLocationRequest = new LocationRequest();
+        LocationRequest mLocationRequest = LocationRequest.create();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
