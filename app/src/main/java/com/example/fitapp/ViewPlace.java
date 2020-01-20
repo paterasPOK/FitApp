@@ -2,7 +2,9 @@ package com.example.fitapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,12 +24,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewPlace extends AppCompatActivity {
+    int userRating;
     ImageView photo;
     RatingBar ratingBar;
     TextView opening_hours,place_address,place_name;
-    Button btnViewOnMap;
+    Button btnViewOnMap,btnRate;
     IGoogleAPIService mService;
     PlaceDetail mPlace;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +47,29 @@ public class ViewPlace extends AppCompatActivity {
         place_name = (TextView)findViewById(R.id.place_name);
         opening_hours = (TextView)findViewById(R.id.place_open_hours);
         btnViewOnMap = (Button)findViewById(R.id.btn_show_map);
+        btnRate = (Button)findViewById(R.id.btn_userRating);
+
+
 
         place_name.setText("");
         place_address.setText("");
         opening_hours.setText("");
+
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewPlace.this,RateApp.class));
+            }
+        });
+
+
 
         btnViewOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mPlace.getResult().getUrl()));
                 startActivity(mapIntent);
+
             }
         });
         //photo
@@ -99,6 +117,9 @@ public class ViewPlace extends AppCompatActivity {
 
                     }
                 });
+
+
+
     }
 
     private String getPlaceDetailUrl(String place_id) {

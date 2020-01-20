@@ -121,9 +121,9 @@ GoogleApiClient.OnConnectionFailedListener,
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
                                 if(placeType.equals("gym"))
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.gym_marker));
                                 else if(placeType.equals("stadium"))
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.running_makrer));
                                 else
                                     markerOptions.icon(BitmapDescriptorFactory.fromResource((int) BitmapDescriptorFactory.HUE_RED));
 

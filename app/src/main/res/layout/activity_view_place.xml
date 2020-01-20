@@ -49,10 +49,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+
+
         <RatingBar
             android:id="@+id/ratingBar"
             android:max="5"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <Button
+            android:id="@+id/btn_userRating"
+            android:text="Would you like to rate our App?"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <Button
