@@ -161,6 +161,11 @@ GoogleApiClient.OnConnectionFailedListener,
                 ActivityCompat.requestPermissions(this, new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION
                 },MY_PERMISSION_CODE);
+            else
+                ActivityCompat.requestPermissions(this,new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+
+                },MY_PERMISSION_CODE);
             return false;
         }
         else

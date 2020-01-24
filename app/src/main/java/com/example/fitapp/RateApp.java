@@ -54,10 +54,9 @@ public class RateApp extends AppCompatActivity {
         mSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
-                databaseAccess.open();
+                DatabaseAccess databaseAccess = new DatabaseAccess(RateApp.this);
                 databaseAccess.addData(userRating);
-                databaseAccess.close();
+
 
             }
         });

@@ -2,40 +2,42 @@ package com.example.fitapp;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseAccess {
-    private SQLiteOpenHelper openHelper;
-    private SQLiteDatabase db;
-    private static DatabaseAccess instance;
-    Cursor c = null;
 
 
-    private DatabaseAccess(Context context){
-        this.openHelper = new DatabaseOpenHelper(context);
+
+public class DatabaseAccess extends SQLiteOpenHelper {
+    private static String DB_PATH="";
+    private static  String DB_NAME = "RatingBar.db";
+    private static String TABLE_NAME = "Ratings";
+    private static String COL = "Rating";
+    private SQLiteDatabase mdb;
+    private Context mContext = null;
+
+    public DatabaseAccess(Context context) {
+        super(context, DB_NAME, null, 1);
     }
 
-    public static DatabaseAccess getInstance(Context context){
-        if(instance==null){
-            instance = new DatabaseAccess(context);
-        }
-        return instance;
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + COL + " INTEGER " + ")";
+        db.execSQL(CREATE_TABLE);
     }
 
-    public void open(){
-        this.db = openHelper.getWritableDatabase();
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
     }
 
-    public void close(){
-        if(db!=null)
-            this.db.close();
-    }
-
-    public void addData(float rating){
-        ContentValues value = new ContentValues();
-        value.put("Rating", rating);
-        db.insert("Ratings",null,value);
+    public void addData(int userRatings){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL, userRatings);
+        long newRowId = db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 }
+
