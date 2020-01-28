@@ -45,6 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
+
+
     private static final int MY_PERMISSION_CODE = 1000;
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
@@ -149,7 +151,7 @@ GoogleApiClient.OnConnectionFailedListener,
         googlePlacesUrl.append("&radius="+10000);
         googlePlacesUrl.append("&type="+placeType);
         googlePlacesUrl.append("&sensor=true");
-        googlePlacesUrl.append("&key="+getResources().getString(R.string.browser_key));
+        googlePlacesUrl.append("&key="+getResources().getString(R.string.MY_BROWSER_KEY));
         Log.d("getUrl",googlePlacesUrl.toString());
         return googlePlacesUrl.toString();
     }

@@ -125,7 +125,7 @@ public class ViewPlace extends AppCompatActivity {
     private String getPlaceDetailUrl(String place_id) {
         StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json");
         url.append("?placeid="+place_id);
-        url.append("&key="+getResources().getString(R.string.browser_key));
+        url.append("&key="+getResources().getString(R.string.MY_BROWSER_KEY));
         return url.toString();
     }
 
@@ -133,7 +133,7 @@ public class ViewPlace extends AppCompatActivity {
         StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo");
         url.append("?maxwidth="+maxWidth);
         url.append("&photoreference="+photo_reference);
-        url.append("&key="+getResources().getString(R.string.browser_key));
+        url.append("&key="+getResources().getString(R.string.MY_BROWSER_KEY));
         return url.toString();
     }
 }

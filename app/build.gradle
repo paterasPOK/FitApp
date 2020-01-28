@@ -17,10 +17,17 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
+    }
+    buildTypes.each {
+        it.resValue 'string', 'MY_API_KEY', "\"myAPIKEY\""
+        it.resValue 'string', 'MY_BROWSER_KEY', "\"myBKEY\""
+
     }
 }
 
